@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "diario"
+version = "0.1.0"
+description = "Trascrizione vocale con correzione automatica e preview clipboard"
+requires-python = ">=3.11"
+dependencies = [
+    "typer>=0.9.0",
+    "rich>=13.0.0",
+    "openai>=2.31.0",
+    "sounddevice>=0.5.5",
+    "scipy>=1.17.1",
+    "numpy>=1.26.0",
+    "fastapi>=0.135.3",
+    "uvicorn>=0.44.0",
+    "python-multipart>=0.0.26",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+diario = "diario.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/diario"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src" = ""

@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Env
+.env
+
+# Output generati
+output/
+
+# Temp audio
+*.wav
+*.tmp
+
+# OS
+.DS_Store
