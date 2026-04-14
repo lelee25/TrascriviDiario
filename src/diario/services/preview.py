@@ -6,7 +6,6 @@ import json
 import webbrowser
 from datetime import datetime
 from pathlib import Path
-from typing import Any
 
 
 def _esc(text: str) -> str:
@@ -40,7 +39,10 @@ def _testo_to_rtf(testo: str) -> str:
             elif ch == "\n":
                 out.append("\\line\n")
             elif cp > 127:
-                out.append(f"\\u{cp}?")
+                # RTF \uN richiede signed 16-bit integer (spec RTF 1.9).
+                # Per codepoint > 32767 va sottratto 65536.
+                signed = cp if cp <= 32767 else cp - 65536
+                out.append(f"\\u{signed}?")
             else:
                 out.append(ch)
         return "".join(out)

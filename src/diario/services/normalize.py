@@ -27,11 +27,12 @@ DIVIETI ASSOLUTI:
 - NON riformulare, NON ristrutturare, NON parafrasare frasi
 - NON aggiungere informazioni non presenti nel testo originale
 - NON rimuovere informazioni presenti nel testo originale
-- NON cambiare valori numerici: dosaggi, parametri, date, durate
-- NON correggere grammatica o stile — solo errori fonetici di trascrizione
+- NON cambiare valori numerici: dosaggi, parametri vitali, date, durate, frequenze
+- NON cambiare nomi propri di persone, pazienti, medici, strutture sanitarie
+- NON correggere grammatica, punteggiatura o stile — solo errori fonetici ASR
 - NON aggiungere punteggiatura dove non c'era
 
-REGOLA DEL DUBBIO: se non sei assolutamente certo che sia un errore fonetico, LASCIA INVARIATO.
+REGOLA DEL DUBBIO: se non sei assolutamente certo che sia un errore fonetico, LASCIA INVARIATO. E' sempre preferibile lasciare un possibile errore che correggere qualcosa di corretto.
 
 OUTPUT: restituisci SOLO il testo corretto. Nessun commento, nessuna spiegazione."""
 
@@ -65,7 +66,11 @@ def normalizza(
                 {"role": "user", "content": testo},
             ],
             temperature=0,
-            max_tokens=len(testo) * 2,
+            # Stima token: ~1 token ogni 4 char per italiano.
+            # Il testo corretto non dovrebbe essere piu' lungo dell'originale,
+            # quindi `tokens_input + 20%` e' un upper bound generoso.
+            # Cap a 4096 per evitare sprechi su testi molto lunghi.
+            max_tokens=min(max(len(testo) // 4 + 200, 256), 4096),
         )
         corrected = (response.choices[0].message.content or "").strip()
 

@@ -13,13 +13,13 @@ load_dotenv(find_dotenv())
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.concurrency import run_in_threadpool
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
 from diario.config import DEFAULT_LLM_MODEL, DEFAULT_WHISPER_MODEL
 from diario.services.transcribe import trascrivi
 from diario.services.normalize import normalizza
-from diario.services.preview import genera_html, apri_preview
+from diario.services.preview import genera_html
 
 app = FastAPI(
     title="Diario API",

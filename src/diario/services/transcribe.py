@@ -14,14 +14,16 @@ from diario.config import DEFAULT_WHISPER_MODEL
 # il limite di 224 del tokenizer multilingual di Whisper/gpt-4o-transcribe.
 DEFAULT_PROMPT = (
     "Registrazione vocale in italiano. Il parlante detta testo, note, appunti "
-    "o diari clinici. Esempio: Paziente riferisce dolore. Pressione 130/85 mmHg, "
-    "frequenza cardiaca 72 bpm, saturazione 98 percento. Diagnosi K02.51, I10. "
-    "Prescrivo nimesulide 100 mg, ibuprofene 600 mg, amoxicillina e acido "
-    "clavulanico 1 g ogni 12 ore, paracetamolo 1000 mg, ramipril 5 mg, "
+    "o diari clinici. Esempio: Paziente riferisce dolore toracico. Temperatura "
+    "36.7 gradi, pressione 130/85 mmHg, frequenza cardiaca 72 bpm, saturazione "
+    "98 percento. Diagnosi K02.51, I10, E11.9, K05.10, J45.9. Prescrivo "
+    "nimesulide 100 mg, ibuprofene 600 mg, amoxicillina e acido clavulanico "
+    "1 g ogni 12 ore, paracetamolo 1000 mg, ramipril 5 mg, enalapril, "
     "omeprazolo 20 mg, metformina 500 mg, cardioaspirina 100 mg, warfarin. "
-    "Terminologia: carie occlusale, test del freddo, test di percussione, "
-    "endodonzia, pulpite acuta reversibile, gengivite, sopragengivale, "
-    "intarsio in composito, eugenolo, mucose rosee, linfonodi, auscultazione."
+    "Terminologia odontoiatrica: carie occlusale, test del freddo, test di "
+    "percussione, endodonzia, pulpite acuta reversibile, gengivite, "
+    "sopragengivale, intarsio in composito, eugenolo, elementi 1.6, 4.6, 4.7. "
+    "Esame obiettivo: auscultazione, palpazione, mucose rosee, linfonodi."
 )
 
 
